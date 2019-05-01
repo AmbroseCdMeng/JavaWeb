@@ -3,18 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>NProgress Demo</title>
-
-<%@ include file="/resources/common/jslib.jsp"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/css/nprogress/nprogress.css">
 
-
+<%@ include file="/resources/common/jslib.jsp"%>
 <%-- <script src="${ctx}/resources/js/jquery-3.3.1.js "></script> --%>
 <script src="${ctx}/resources/js/nprogress/nprogress.js"></script>
-<link style="${ctx}/resources/css/nprogress/nprogress.css">
 
 </head>
 <body>
@@ -27,7 +25,7 @@
 	$(function() {
 
 		NProgress.configure({
-			showSpinner : false
+			showSpinner : true
 		});
 
 		$(document).ajaxStart(function() {
