@@ -16,4 +16,19 @@ public class BootStrapController {
 	public String index2() {
 		return "bootstrap/index2";
 	}
+	
+	@RequestMapping("index3")
+	public String index3() {
+		return "bootstrap/index3";
+	}
+	
+	@RequestMapping("index4")
+	public String index4() {
+		return "bootstrap/index4";
+	}
+	
+	@RequestMapping("index5")
+	public String index5() {
+		return "bootstrap/index5";
+	}
 }
