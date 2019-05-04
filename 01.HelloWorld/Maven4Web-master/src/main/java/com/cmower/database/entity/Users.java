@@ -3,7 +3,7 @@ package com.cmower.database.entity;
 import com.cmower.dal.DataEntity;
 
 @SuppressWarnings("serial")
-public class Users extends DataEntity<Users> {
+public class Users extends DataEntity<Users> { 
 	private String username;
 	private String password;
 

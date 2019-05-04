@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="  
+       http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+       http://www.springframework.org/schema/tx   
+       http://www.springframework.org/schema/tx/spring-tx-3.2.xsd   
+       http://www.springframework.org/schema/context  
+       http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+
+
+    <!-- 使用注解的包    将 Service 类转换为 Spring 容器中的 Bean -->
+    <context:component-scan base-package="com.cmower.spring">
+        <!-- 过滤掉 @Controller 标注的控制器类，为了解决事务失效问题。即在 主容器 application-context.xml 下不扫描 @Controller 注解，在子容器 context-dispatcher.xml 只扫描 @Controller 注解 -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <!-- PropertyPlaceholderConfigurer 是 BeanFactoryPostProcessor 的子类，能够在 Servlet 容器初始化时，读取指定 config.properties 文件获取键值对 -->
+    <!-- 当 DataSource 初始化时，它会对其进行拦截，并将其中的 ${} 进行替换 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true"/>
+        <property name="locations" value="classpath:config.properties"/>
+	</bean>
+
+    <!-- druidDataSource -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 配置连接信息 -->
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${password}"/>
+        <!-- 使用公钥对数据库密码进行解密 -->
+        <property name="connectionProperties" value="config.decrypt=true;config.decrypt.key=${publicKey}"/>
+
+        <!-- 配置初始化大小值、最小值、最大值 -->
+        <property name="initialSize" value="1"/>
+        <property name="minIdle" value="1"/>
+        <property name="maxActive" value="20"/>
+        <!-- 配置获取连接等待超时时间 -->
+        <property name="maxWait" value="60000"/>
+        <!-- 配置间隔多久才进行一次检测 检测需要关闭的空闲连接 单位：ms -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <!-- 配置一个连接在池中最小生存时间 单位：ms -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+
+        <property name="validationQuery" value="SELECT 'x'" />
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+
+        <!-- 配置 filters stat: 监控统计拦截;  slf4j: druid 日志输出; config: 对数据库密码进行拦截配置 -->
+        <property name="filters" value="stat, slf4j, config"/>
+
+    </bean>
+
+    <!-- 构建 SQLSessionFactory 实例 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- typeAliasesPackage 对应实体类所在的包。这样设置的好处是可以再mapper.xml中使用 Users 替换 com.cmower.database.entity.Users -->
+        <property name="typeAliasesPackage" value="com.cmower.database.entity" />
+        <!-- DataSource 必须指定。表示用于连接数据库的数据源 -->
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.cmower.database.mapper" />
+	</bean>
+
+</beans>

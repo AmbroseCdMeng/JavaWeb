@@ -4,9 +4,9 @@ import java.io.ObjectInputStream.GetField;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.print.attribute.ResolutionSyntax;
 
+@SuppressWarnings("unused")
 public class DataEntity<T> implements Serializable {
 
 	private static final long serialVersionUID = 2210598609745930327L;
