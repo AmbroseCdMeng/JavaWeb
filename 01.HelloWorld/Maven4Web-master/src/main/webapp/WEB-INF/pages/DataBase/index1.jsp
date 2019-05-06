@@ -19,5 +19,6 @@
 </head>
 <body>
 	<p>用户 ${name} 登陆成功！</p>
+	<p>记得打开 MySql 服务哦~</p>
 </body>
 </html>

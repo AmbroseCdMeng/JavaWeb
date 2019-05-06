@@ -143,6 +143,13 @@
 		</dependency>
 		<!-- 添加 slf4j 日志依赖 end -->
 
+		<!-- SiteMesh 基本依赖（网页布局装饰集成框架） -->
+		<dependency>
+			<groupId>org.sitemesh</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

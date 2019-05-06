@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+    <!-- 告诉 SiteMesh 匹配路径 /* 的请求应该被 decorator.jsp 进行装饰 -->
+    <mapping path="/*" decorator="/WEB-INF/pages/AdminTEL/decorator.jsp" />
+    <!-- 排除不必要装饰的路径 -->
+    <mapping path="/one*" exclue="true" />
+</sitemesh>
