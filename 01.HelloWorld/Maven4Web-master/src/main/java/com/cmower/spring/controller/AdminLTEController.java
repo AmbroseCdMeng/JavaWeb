@@ -29,4 +29,9 @@ public class AdminLTEController {
 	public String sitemesh() {
 		return "AdminTEL/sitemesh";
 	}
+	
+	@RequestMapping("select2")
+	public String select2() {
+		return "AdminTEL/select2";
+	}
 }
