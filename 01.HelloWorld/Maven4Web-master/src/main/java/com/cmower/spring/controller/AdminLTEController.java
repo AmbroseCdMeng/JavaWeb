@@ -30,8 +30,17 @@ public class AdminLTEController {
 		return "AdminTEL/sitemesh";
 	}
 	
+	/**
+	 * Select2
+	 * @return
+	 */
 	@RequestMapping("select2")
 	public String select2() {
 		return "AdminTEL/select2";
+	}
+	
+	@RequestMapping("treeview")
+	public String treeView() {
+		return "AdminTEL/treeview";
 	}
 }

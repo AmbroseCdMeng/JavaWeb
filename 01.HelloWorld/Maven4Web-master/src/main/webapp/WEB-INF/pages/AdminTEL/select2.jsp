@@ -95,8 +95,8 @@
 				minimumResultsForSearch : 0,//下拉列表中显示搜索框所需的最小结果数
 				multiple : true,//启用多选模式
 				selectOnClose : false, //下拉列表关闭时自动选择一个
-				//templateResult:function(){},//搜索结果自定义模板（回调函数）
-				//TemplateSelection : function() { },//选择选项后呈现的效果自定义模板（回调函数）
+			//templateResult:function(){},//搜索结果自定义模板（回调函数）
+			//TemplateSelection : function() { },//选择选项后呈现的效果自定义模板（回调函数）
 			});
 		});
 
@@ -134,6 +134,25 @@
 			}
 			return null;
 		}
+	</script>
+
+	<script type="text/javascript">
+		// 	Select2 的操作
+		$("#myselect").val('1');//选中值为 1 的选项
+		$("#myselect").val(['1', '2']);// 选中值为 1 和 2 的选项
+		
+		$("#myselect").trigger('change');//通知组件选中项发生了变化
+		
+		$("#myselect").val(null).trigger('change');//清除选中项
+		
+		$("#myselect").select2('data');//返回当前项的所有源数据
+		$("#myselect").find(":selected");//返回当前项的 JQuery 对象。不包含源数据
+		
+		$("#myselect").on('select2:select', function(e){
+			var data = e.params.data;
+			console.log(data);
+		});
+		
 	</script>
 </body>
 </html>

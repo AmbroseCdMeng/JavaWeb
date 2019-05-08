@@ -5,6 +5,7 @@
     <mapping path="/adminlte*" decorator="/WEB-INF/pages/AdminTEL/decorator.jsp" />
     <!-- 排除不必要装饰的路径 -->
     <mapping path="/adminlte/select2" exclue="true" />
+    <mapping path="/adminlte/treeview" exclue="true" />
     <!-- <mapping path="/HTMLExtend*" exclue="true" />
     <mapping path="/Two*" exclue="true" />
     <mapping path="/Three*" exclue="true" />
