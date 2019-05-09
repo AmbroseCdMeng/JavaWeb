@@ -17,6 +17,12 @@
 
 	<div id="treeview"></div>
 
+	<hr>
+	<br>
+	<br>
+
+	<div id="treeview1"></div>
+
 	<script type="text/javascript">
 		var treeviewDefaultDate = [ {
 			text : '目录',
@@ -50,7 +56,7 @@
 				href : '#node-1', //指定节点的锚标记。通常结合 enableLinks 使用
 				selectable : true, //是否可以选择。false 会将节点默认展开切不能选择
 				state : { //指定节点的初始状态
-					checked : true, //选中
+					checked : false, //选中
 					disable : true, //不可选
 					expanded : true,//展开
 					selected : true
@@ -61,8 +67,10 @@
 					text : '总结'
 				} ]
 			} ]
-		} ]
+		} ];
+	</script>
 
+	<script type="text/javascript">
 		/**********************/
 		/*******常用配置*******/
 		/**********************/
@@ -229,12 +237,11 @@
 
 		/*	32、清空搜索结果	*/
 		$('#treeview').treeview('clearSearch');//
-		
-		
+
 		/**********************/
 		/*******常用监听*******/
 		/**********************/
-		
+
 		//nodeChecked(event, node)		勾选
 		//nodeUnchecked(event, node)	取消勾选
 		//nodelSelected(event, node)	选择
@@ -245,12 +252,188 @@
 		//nodeEnabled(event, node)		启用
 		//searchComplete(event, results)	搜索完成
 		//searchCleared(event, results)		搜索结果被清除
+		// 		$('#treeview').treeview({
+		// 			onNodeChecked:function(event, data){
+		// 				console.log("onNodeChecked:function");
+		// 			}
+		// 		})
+	</script>
+
+	<script type="text/javascript">
+		/*****************************************/
+		/*******BootStrap TreeView 常用功能扩展*******/
+		/****************************************/
+
+		/**
+		 * 	默认情况下：
+		 *		BootStrap TreeView 对父节点的选择并不会影响其子节点
+		 *		所以我们需要利用监听事件和方法来扩展功能
+		 */
+
+		//初始化树视图
+		$('#treeview1').treeview({
+			data : treeviewDefaultDate,
+			showCheckbox : true,
+			//节点选中
+			onNodeChecked : function(event, node) {
+				//选中该节点的子节点
+				check_Children(node);
+				//如果兄弟节点全部选中，则选中父节点
+				check_Parent(node);
+			},
+			onNodeUnchecked : function(event, node) {
+				//取消选中该节点的子节点
+				uncheck_Children(node);
+				//如果兄弟节点全部取消选中，则取消选中父节点
+				uncheck_Parent_2(node);
+			},
+			onNodeSelected:function(event, node){
+				check_Select(node);
+			},
+			onNodeUnselected:function(event, node){
+				uncheck_Unselect(node);
+			}
+			
+		});
+
+		//获取树视图实例
+		var tv = $('#treeview1').data('treeview');
+
+		/*	1、父节点勾选时，勾选所有子孙节点	*/
+		var check_Children = function(node) {
+
+			//定义方法。选中当前节点的子孙节点
+			var _parentCheck = function(children) {
+				//遍历当前节点的直接子节点
+				$.each(children, function(index, child) {
+					//选中当前节点的直接子节点
+					tv.checkNode(child.nodeId, {
+						silent : true
+					});
+					//如果当前节点的子节点还有子节点，则继续向下层选中
+					if (child.nodes != null) {
+						_parentCheck(child.nodes);
+					}
+				});
+			};
+			//勾选父节点。调用上面定义的方法
+			if (node.nodes != null) {
+				_parentCheck(node.nodes);
+			}
+		};
+
+		/*	2、父节点取消勾选时，所有子孙节点取消勾选	*/
+		var uncheck_Children = function(node) {
+			var _parentUncheck = function(children) {
+				$.each(children, function(index, child) {
+					tv.uncheckNode(child.nodeId, {
+						silent : true
+					});
+					if (child.nodes != null) {
+						_parentUncheck(child.nodes);
+					}
+				});
+			}
+			if (node.nodes != null) {
+				_parentUncheck(node.nodes);
+			}
+		}
+
+		/*	3、子节点全部勾选时，选中父节点	*/
+		var check_Parent = function(node) {
+			var _childCheck = function(child) {
+				//获取选中节点的父节点
+				var parent = tv.getParent(child.nodeId);
+				//如果存在父节点。判断其是否已经被选中
+				if (parent != undefined) {
+					//定义标识符，是否全部选中，默认为 true。（因为选中自身的时候，没有兄弟节点）
+					var isAllChecked = true;
+					//获取兄弟节点
+					var siblings = tv.getSiblings(child.nodeId);
+					//遍历兄弟节点，如果有任意一个兄弟节点未选中，则修改标识符为 false
+					for ( var i in siblings) {
+						if (!siblings[i].state.checked) {
+							isAllChecked = false;
+							break;
+						}
+					}
+					//否则，子节点全部被选中，则勾选其父节点
+					if (isAllChecked) {
+						tv.checkNode(parent.nodeId, {
+							silent : true
+						});
+						//如果父节点还有父节点，则继续
+						var grand = tv.getParent(parent.nodeId);
+						if (grand != undefined) {
+							_childCheck(parent);
+						}
+					}
+				}
+			}
+			//调用方法
+			//如果选中的是子节点
+			//if (node.nodes == null) {
+			_childCheck(node);
+			//}
+		};
+
+		/*	4.1、子节点全部取消勾选时，父节点取消勾选	*/
+		var uncheck_Parent = function(node) {
+			var _childUncheck = function(child) {
+				var parent = tv.getParent(child.nodeId);
+				if (parent != undefined) {
+					var isAllUnchecked = true;
+					var siblings = tv.getSiblings(child.nodeId);
+					for ( var i in siblings) {
+						if (siblings[i].state.checked) {
+							isAllUnchecked = false;
+							break;
+						}
+					}
+					if (isAllUnchecked) {
+						tv.uncheckNode(parent.nodeId, {
+							silent : true
+						});
+						var grand = tv.getParent(parent.nodeId);
+						if (grand != undefined) {
+							_childUncheck(parent);
+						}
+					}
+				}
+			}
+			//if (node.nodes == null) {
+			_childUncheck(node);
+			//}
+		}
+
+		/*	4.2、子节点任意一个取消时，父节点取消选中	*/
+		var uncheck_Parent_2 = function(node) {
+			var _childUncheck = function(child) {
+				var parent = tv.getParent(child.nodeId);
+				if (parent != undefined) {
+					tv.uncheckNode(parent.nodeId, {
+						silent : true
+					});
+				}
+				var grand = tv.getParent(parent.nodeId)
+				if (grand != undefined) {
+					_childUncheck(parent);
+				}
+			}
+			//if (node.nodes == null) {
+			_childUncheck(node);
+			//}
+		}
 		
-// 		$('#treeview').treeview({
-// 			onNodeChecked:function(event, data){
-// 				console.log("onNodeChecked:function");
-// 			}
-// 		})
+		/*	5、选中节点时勾选节点	*/
+		var check_Select = function (node) {
+			tv.checkNode(node.nodeId);
+		}
+		
+		/*	6、取消选择节点时取消勾选节点	*/
+		var uncheck_Unselect = function (node) {
+			tv.uncheckNode(node.nodeId);
+		}
 	</script>
 </body>
 </html>
