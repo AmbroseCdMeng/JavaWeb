@@ -28,4 +28,8 @@ public class UserService {
 	public Users select(long userid) {
 		return this.userMapper.select(userid);
 	}
+	
+	public Users selectOne(String username) {
+		return this.userMapper.selectOne(username);
+	}
 }

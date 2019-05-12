@@ -47,4 +47,15 @@
         from userinfo as u
         where u.del_flag = 1 and u.id = #{id}
     </select>
+
+    <!-- SELECT ONE -->
+    <select id="selectOne" resultMap="BaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List" />
+        from userinfo as u
+        where u.del_flag = 1 
+        <if test="username != null">
+            and u.username = #{username}
+        </if>
+    </select>
 </mapper>
