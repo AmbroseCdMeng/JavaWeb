@@ -6,6 +6,9 @@ public class Constants {
 	public static final String QUERY_ERROR = "请求信息错误";
 	public static final String SESSION_KAPTCHA_CODE="SESSION_KAPTCHA_CODE";
 	
+	
+	public static final String DEFAULT_UPLOAD = "upload";
+	
 	public class StatusCode{
 		public static final int OK = 200;
 		public static final int ERROR = 300;

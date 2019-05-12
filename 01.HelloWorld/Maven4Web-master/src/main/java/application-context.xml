@@ -71,4 +71,21 @@
 		<property name="basePackage" value="com.cmower.database.mapper" />
 	</bean>
 
+
+    <!-- Kaptcha 验证码生成类库 -->
+    <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+        <property name="config">
+            <bean class="com.google.code.kaptcha.util.Config">
+                <constructor-arg>
+                    <props>
+                        <prop key="kaptcha.border.color">210,214,222</prop>
+                        <prop key="kaptcha.image.width">135</prop>
+                        <prop key="kaptcha.image.height">50</prop>
+                        <prop key="kaptcha.textproducer.char.length">4</prop>
+                    </props>
+                </constructor-arg>
+            </bean>
+        </property>
+    </bean>
+
 </beans>

@@ -11,9 +11,7 @@
 
 <%@include file="/resources/common/jslib.jsp"%>
 <%-- <script type="text/javascript" src="${ctx }/resources/js/form/"></script> --%>
-<script type="text/javascript" src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js">
-	
-</script>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/language/zh_CN.js"></script>
 
 <style>
@@ -151,6 +149,16 @@ tr td input, select, textarea {
 						<td><input name="fullname" type="text" placeholder="Please Input Your fullname" class="form-control"></td>
 					</tr>
 				</table>
+				<!--  验证码提交验证测试（不含点击图片更换验证码功能 ） 详见 index3 -->
+				<div class="col-xs-8">
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" name="kaptchaCode" data-bv-notempty data-bv-blank placeholder="验证码">
+						<span class="glyphicon glyphicon-screenshot form-control-feedback"></span>
+					</div>
+				</div>
+				<div class="col-xs-4">
+					<img class="img-responsive" alt="" src="${ctx}/form/kaptcha">
+				</div>
 			</div>
 			<div>
 				<input class="btn btn-primary btn-block btn-flat" type="submit" value="Login">

@@ -33,6 +33,11 @@
 		<!-- 通过设置前缀和后缀来缩短view的路径，例如在controller中指定“1/adminlte”就代表的是“/WEB-INF/pages/1/adminlte.jsp” -->
 	</bean>
 
+    <!-- SpringMVC 文件处理器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="UTF-8">
+        <property name="maxUploadSize" value="1024000000"></property>
+    </bean>
+
 	<!-- MVC Annotation Driven -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>
