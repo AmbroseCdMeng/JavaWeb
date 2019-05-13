@@ -1,8 +1,7 @@
 package com.cmower.dal;
 
-import com.cmower.spring.controller.BaseController;
 
-public class AjaxResponse extends BaseController {
+public class AjaxResponse extends BaseEntity<AjaxResponse> {
 
 	/**
 	 * 状态码

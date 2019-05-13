@@ -19,7 +19,7 @@
 
 	<div id="demo1">
 		<span>当提交带有文件的表单时，需要配置表单的 enctype="multipart/form-data" </span>
-		<form id="headimgForm" action="${ctx }/form/saveHeadimg" enctype="multipart/form-data" method="post" role="form">
+		<form id="headimgForm" action="${ctx }/form/saveHeadImg" enctype="multipart/form-data" method="post" role="form">
 			<div class="box-body">
 				<div class="form-group">
 					<label>头像</label>
@@ -31,6 +31,11 @@
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</div>
 		</form>
+	</div>
+
+	<div>
+		<!-- 	F:\001.File\01.eclipse_workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Maven4Web\upload -->
+		<img id="headImg" alt="加载失败" src="">
 	</div>
 
 	<script type="text/javascript">
@@ -66,13 +71,21 @@
 				type : $form.attr('method') || 'POST',
 				url : $form.attr('action'),
 				data : data,
-				chche : false,
+				cache : false,
 				dataType : 'json',
-				contenType : false,//发送数据到服务器所使用的内容类型。默认为 true，即文本URL类型。上传文件时，必须设置为 false，即form-data类型。
+				contentType : false,//发送数据到服务器所使用的内容类型。默认为 true，即文本URL类型。上传文件时，必须设置为 false，即form-data类型。
 				processData : false,//请求发送的数据是否转换为查询字符串。默认为 true，即转换。上传文件时，设置为 false，不需要转换。
 				success : function(json) {
 					console.info(json);
-
+					if (json.statusCode == 200) {
+						$('#headImg').attr('src', json.map.headImg);
+					} else {
+						bv.updateMessage(json.field, 'blank', json.message);
+						bv.updateStatus(json.field, 'INVALID', 'blank');
+					}
+				},
+				error : function(e) {
+					console.error(e);
 				}
 			});
 		})

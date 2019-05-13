@@ -14,18 +14,27 @@ public class DataEntity<T> implements Serializable {
 	/**
 	 * UserInfo
 	 */
-	private Long id;
+	protected Long id;
 	protected Long create_date;
 	protected Long update_date;
 	protected Integer del_flag;
 
-	public Long getId() {
-		return id;
-	}
+	
 
 	/**
 	 * Getter & Setter
 	 */
+	
+	public Long getId() {
+		return id;
+	}
+	
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 	public Long getCreate_date() {
 		return create_date;
 	}

@@ -54,8 +54,10 @@
 	</mvc:annotation-driven>
 
 
+    <!-- 配置路径 可以直接通过 url 访问 webapp 文件夹下的资源， 其中 location 为可访问的文件目录， mapping 为允许访问的 url 规则 -->
 	<!-- 静态资源（常用组件、图片、样式表、JavaScript、上传文件目录） -->
-	<mvc:resources location="/resources/"
-		mapping="/resources/**" />
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+
+    <mvc:resources location="/upload/" mapping="/upload/**" />              
 
 </beans>  

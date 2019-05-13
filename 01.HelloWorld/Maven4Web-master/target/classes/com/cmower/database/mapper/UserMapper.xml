@@ -6,6 +6,7 @@
         <result column="id" property="id"></result>
         <result column="username" property="username"></result>
         <result column="password" property="password"></result>
+        <result column="headImg" property="headImg"></result>
         <result column="create_date" property="create_date"></result>
         <result column="update_date" property="update_date"></result>
         <result column="del_flag" property="del_flag"></result>
@@ -13,7 +14,7 @@
 
     <!-- 列 -->
     <sql id="Base_Column_List">
-        id, username, password, create_date, update_date, del_flag
+        id, username, password, headImg, create_date, update_date, del_flag
     </sql>
 
     <!-- INSERT -->
@@ -21,13 +22,15 @@
         insert into userinfo(username, password, create_date, update_date)
         values(#{username}, #{password}, #{create_date}, #{update_date})
     </insert>
+
     <!-- DELETE -->
     <update id="delete" parameterType="Long">
         update userinfo set del_flag = 0 where id = #{id}
     </update>
+
     <!-- UPDATE -->
     <update id="update">
-        update userinfo
+        update userinfo u
         <set>
             <if test="username != null">
                 username = #{username},
@@ -35,11 +38,16 @@
             <if test="password != null">
                 password = #{password},
             </if>
+            <if test="headImg != null">
+                headImg = #{headImg},
+            </if>
             <if test="update_date != null">
                 update_date = #{update_date},
             </if>
         </set>
+        where u.id = #{id}
     </update>
+
     <!-- SELECT -->
     <select id="select" resultMap="BaseResultMap" parameterType="Long">
         select

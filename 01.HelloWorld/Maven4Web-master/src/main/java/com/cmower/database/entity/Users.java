@@ -6,6 +6,7 @@ import com.cmower.dal.DataEntity;
 public class Users extends DataEntity<Users> { 
 	private String username;
 	private String password;
+	private String headImg;
 
 	public String getUsername() {
 		return username;
@@ -22,4 +23,14 @@ public class Users extends DataEntity<Users> {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getHeadImg() {
+		return headImg;
+	}
+
+	public void setHeadImg(String headImg) {
+		this.headImg = headImg;
+	}
+	
+	
 }

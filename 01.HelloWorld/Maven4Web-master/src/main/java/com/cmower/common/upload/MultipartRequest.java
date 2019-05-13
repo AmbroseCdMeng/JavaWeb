@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cmower.common.Constants;
+import com.cmower.common.Variables;
 import com.cmower.common.base.PathKit;
 import com.cmower.database.entity.UploadFile;
 
@@ -36,7 +37,11 @@ public class MultipartRequest extends HttpServletRequestWrapper {
 	 * @param request
 	 */
 	private void wrapMultipartRequest(HttpServletRequest request) {
-		String saveDirectory = PathKit.getWebRootPath() + File.separator + Constants.DEFAULT_UPLOAD + File.separator;
+		
+		//String saveDirectory = PathKit.getWebRootPath() + File.separator + Constants.DEFAULT_UPLOAD + File.separator;
+		//String saveDirectory = Variables.ctx + File.separator + Constants.DEFAULT_UPLOAD + File.separator;
+		String saveDirectory = "F:\\301.Java_web\\01.HelloWorld\\Maven4Web-master\\src\\main\\webapp" + File.separator + Constants.DEFAULT_UPLOAD + File.separator;
+		
 		File dir = new File(saveDirectory);
 		if (!dir.exists()) {
 			if (!dir.mkdirs()) {
@@ -63,15 +68,9 @@ public class MultipartRequest extends HttpServletRequestWrapper {
 	}
 
 	/**
-	 * 
 	 * 要限制上传文件的类型，在收到上传文件名时，判断后缀名是否合法。
-	 * 
-	 * 
-	 * 
 	 * @param uploadFile
-	 * 
 	 * @return
-	 * 
 	 */
 	private boolean isSafeFile(UploadFile uploadFile) {
 		if (uploadFile.getFileName().toLowerCase().endsWith(".jsp")) {
@@ -86,9 +85,7 @@ public class MultipartRequest extends HttpServletRequestWrapper {
 	}
 
 	/**
-	 * 
 	 * Methods to replace HttpServletRequest methods
-	 * 
 	 */
 	public Enumeration getParameterNames() {
 		return multipartRequest.getParameterNames();

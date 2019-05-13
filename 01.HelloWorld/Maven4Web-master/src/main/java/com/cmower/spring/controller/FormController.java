@@ -5,21 +5,27 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.alibaba.druid.util.StringUtils;
 import com.cmower.common.Constants;
 import com.cmower.common.Variables;
+import com.cmower.common.upload.MultipartRequest;
+import com.cmower.common.upload.UploadFileManager;
 import com.cmower.common.util.AjaxResponseUtils;
 import com.cmower.common.util.CipherUtils;
 import com.cmower.dal.AjaxResponse;
+import com.cmower.database.entity.UploadFile;
 import com.cmower.database.entity.Users;
 import com.cmower.spring.service.UserService;
 import com.google.code.kaptcha.Producer;
@@ -179,6 +185,56 @@ public class FormController extends BaseController {
 	@RequestMapping("fileUploader")
 	public String fileUploader() {
 		return "Form/fileUploader";
+	}
+	
+	public UploadFileManager getFiles(HttpServletRequest request) {
+		
+		/*  以下 2 行 代码用来检测 前台 form 表单 中的 enctype="multipart/form-data" 配置是否成功传递到后台，
+		 *  如果传递失败，后台会报错：
+		 *  类型转换异常 ： HttpServletRequestFilterable cannot be cast to MultipartHttpServletReques
+		 *  */
+		//MultipartResolver resolver =  new CommonsMultipartResolver(request.getSession().getServletContext());
+		//boolean isMultipart = resolver.isMultipart(request);
+		
+		if (request instanceof MultipartRequest == false) {
+			request = new MultipartRequest(request);
+		}
+		return ((MultipartRequest)request).getFileManager();
+	}
+	
+	@RequestMapping("saveHeadImg")
+	@ResponseBody
+	public AjaxResponse savaHeadImg(HttpServletRequest request) {
+		logger.debug("头像上传");
+		AjaxResponse response = AjaxResponseUtils.getFailureResponse();
+		//获取上传文件管理器
+		UploadFileManager fileManager = getFiles(request);
+		
+		//获取上传文件
+		UploadFile file = fileManager.getFile();
+		
+		//如果上传文件为空，返回错误信息
+		if (file == null) {
+			response.setField("headImg");
+			response.setMessage("请选择图片");
+			return response;
+		}
+		
+		//验证通过后，保存上传的文件到服务器
+		fileManager.save();
+		
+		//保存上传路径到数据库
+		Users user = this.userService.selectOne("MengChengdu");
+		Users update = new Users();
+		update.setId(user.getId());
+		update.setHeadImg(file.getCompleteName());
+		this.userService.update(update);
+		
+		response = AjaxResponseUtils.getSuccessResponse();
+		//返回客户端可以访问的文件路径
+		response.put("headImg", file.getCompleteName());
+		
+		return response;
 	}
 }
 
