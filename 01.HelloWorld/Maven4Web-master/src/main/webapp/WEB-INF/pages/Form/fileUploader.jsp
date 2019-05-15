@@ -76,9 +76,13 @@
 				contentType : false,//发送数据到服务器所使用的内容类型。默认为 true，即文本URL类型。上传文件时，必须设置为 false，即form-data类型。
 				processData : false,//请求发送的数据是否转换为查询字符串。默认为 true，即转换。上传文件时，设置为 false，不需要转换。
 				success : function(json) {
-					console.info(json);
-					if (json.statusCode == 200) {
-						$('#headImg').attr('src', json.map.headImg);
+					//console.info(json);
+					//debugger;
+					if (json.statusCode === 200) {
+						sleep(2000);
+						console.info("ajax success: "+new Date().getTime());
+						$('#headImg').attr('src', json.map.headImg+"?v="+Math.random());
+						
 					} else {
 						bv.updateMessage(json.field, 'blank', json.message);
 						bv.updateStatus(json.field, 'INVALID', 'blank');
@@ -89,6 +93,17 @@
 				}
 			});
 		})
+	</script>
+	<script type="text/javascript">
+	function sleep(numberMillis) { 
+		var now = new Date(); 
+		var exitTime = now.getTime() + numberMillis; 
+		while (true) { 
+		now = new Date(); 
+		if (now.getTime() > exitTime) 
+		return; 
+		} 
+		}
 	</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.cmower.spring.controller;
 
 import java.awt.image.BufferedImage;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
@@ -222,18 +223,18 @@ public class FormController extends BaseController {
 		
 		//验证通过后，保存上传的文件到服务器
 		fileManager.save();
-		
+		System.out.println("file save success: "+System.currentTimeMillis());
 		//保存上传路径到数据库
 		Users user = this.userService.selectOne("MengChengdu");
 		Users update = new Users();
 		update.setId(user.getId());
 		update.setHeadImg(file.getCompleteName());
 		this.userService.update(update);
-		
+		System.out.println("insert db success: " + System.currentTimeMillis());
 		response = AjaxResponseUtils.getSuccessResponse();
 		//返回客户端可以访问的文件路径
 		response.put("headImg", file.getCompleteName());
-		
+		System.out.println("return : " + System.currentTimeMillis());
 		return response;
 	}
 }
