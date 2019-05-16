@@ -38,15 +38,11 @@
 <script type="text/javascript"
 	src="${ctx }/resources/js/bootstrap/bootstrap.js"></script>
 
-<script type="text/javascript"
-	src="https://cdn.bootcss.com/headroom/0.9.4/headroom.js"></script>
-<script type="text/javascript"
-	src="https://cdn.bootcss.com/headroom/0.9.4/jQuery.headroom.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/headroom/0.9.4/headroom.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/headroom/0.9.4/jQuery.headroom.js"></script>
 
-<script type="text/javascript"
-	src="${ctx }/resources/js/flat-ui/flat-ui.js"></script>
-<script type="text/javascript"
-	src="${ctx }/resources/js/flat-ui/application.js"></script>
+<script type="text/javascript" src="${ctx }/resources/js/flat-ui/flat-ui.js"></script>
+<script type="text/javascript" src="${ctx }/resources/js/flat-ui/application.js"></script>
 
 <script src="${ctx}/resources/js/videojs/video-4.7.3.js"></script>
 

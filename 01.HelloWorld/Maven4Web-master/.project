@@ -34,4 +34,11 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/webapp/resources/css/dropify/dropify.css</name>
+			<type>1</type>
+			<location>C:/Users/TR/Downloads/dropify.css</location>
+		</link>
+	</linkedResources>
 </projectDescription>

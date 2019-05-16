@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <!-- BootStrap 使用到的某些 HTML 元素和CSS属性需要将页面设置为 HTML5 文档类型。所以需要进行如下格式设置 start -->
@@ -41,8 +40,7 @@ html {
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
 <!-- 引入 bootstrap 相关 js 文件 和 css 文件  start -->
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/resources/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/css/bootstrap/bootstrap.css">
 <%@include file="/resources/common/jslib.jsp"%>
 <script src="${ctx}/resources/js/bootstrap/bootstrap.js"></script>
 <!-- end -->
@@ -71,10 +69,8 @@ html {
 <script type="text/javascript">
 <!-- 或者使用 js 来固定页面 -->
 	$(function() {
-		
-		$(".main").height(
-				$(document).height() - $("header").height()
-						- $("footer").height());
+
+		$(".main").height($(document).height() - $("header").height() - $("footer").height());
 	})
 </script>
 </html>

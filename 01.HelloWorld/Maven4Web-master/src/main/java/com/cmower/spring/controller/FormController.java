@@ -30,6 +30,7 @@ import com.cmower.database.entity.UploadFile;
 import com.cmower.database.entity.Users;
 import com.cmower.spring.service.UserService;
 import com.google.code.kaptcha.Producer;
+import com.mysql.jdbc.ResultSetInternalMethods;
 
 @RequestMapping("form")
 @Controller
@@ -237,5 +238,54 @@ public class FormController extends BaseController {
 		System.out.println("return : " + System.currentTimeMillis());
 		return response;
 	}
+	
+	/**
+	 * Dropigy 插件
+	 * @return
+	 */
+	@RequestMapping("dropify")
+	public String dropify() {
+		return "Form/dropify";
+	}
+	
+	@RequestMapping("saveDropifyImg")
+	@ResponseBody
+	public AjaxResponse saveDropifyImg(HttpServletRequest request) {
+		logger.debug("使用 Dropigy 上传图片");
+		
+		AjaxResponse response = AjaxResponseUtils.getFailureResponse();
+		
+		//上传文件管理类
+		UploadFileManager fileManager = getFiles(request);
+		
+		//获取上传文件
+		UploadFile file = fileManager.getFile();
+		
+		//
+		if (file  == null) {
+			response.setMessage("请选择");
+			return response;
+		}
+		
+		//保存
+		fileManager.save();
+		
+		response = AjaxResponseUtils.getSuccessResponse();
+		
+		//返回可访问的路径
+		response.put("imgUrl", file.getCompleteName());
+		
+		return response;
+	}
+	
+	/**
+	 *  增强版的 Html5 文件输入框
+	 * @return
+	 */
+	@RequestMapping("fileInput")
+	public String fileInput() {
+		return "Form/fileInput";
+	}
+	
 }
 
