@@ -1,5 +1,7 @@
 package com.cmower.database.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.cmower.dal.BaseMapper;
@@ -29,4 +31,5 @@ public interface UserMapper extends BaseMapper<Users, Long> {
 	 */
 	
 	Users selectOne(@Param(value="username")String username);
+	
 }

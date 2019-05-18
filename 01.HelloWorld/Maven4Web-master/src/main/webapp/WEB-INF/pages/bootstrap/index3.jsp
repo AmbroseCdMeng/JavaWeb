@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +8,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/resources/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/css/bootstrap/bootstrap.css">
 <%@include file="/resources/common/jslib.jsp"%>
-<script type="text/javascript"
-	src="${ctx }/resources/js/bootstrap/bootstrap.js"></script>
+<script type="text/javascript" src="${ctx }/resources/js/bootstrap/bootstrap.js"></script>
 
 </head>
 <body>
@@ -187,18 +184,15 @@
 		<h3>图片的常用样式</h3>
 		<!-- 圆角方形 -->
 		<div>
-			<img class="img-rounded" alt=""
-				src="${ctx}/resources/images/mmexport1538743116457.jpg">
+			<img class="img-rounded" alt="" src="${ctx}/resources/images/mmexport1538743116457.jpg">
 		</div>
 		<!-- 圆形 -->
 		<div>
-			<img class="img-circle" alt=""
-				src="${ctx}/resources/images/mmexport1538743116457.jpg">
+			<img class="img-circle" alt="" src="${ctx}/resources/images/mmexport1538743116457.jpg">
 		</div>
 		<!-- 缩略图 -->
 		<div>
-			<img class="img-thumbnail" alt=""
-				src="${ctx}/resources/images/mmexport1538743116457.jpg">
+			<img class="img-thumbnail" alt="" src="${ctx}/resources/images/mmexport1538743116457.jpg">
 		</div>
 	</div>
 

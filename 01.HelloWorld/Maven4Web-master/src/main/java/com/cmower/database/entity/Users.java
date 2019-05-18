@@ -7,6 +7,7 @@ public class Users extends DataEntity<Users> {
 	private String username;
 	private String password;
 	private String headImg;
+	private String detail;
 
 	public String getUsername() {
 		return username;
@@ -30,6 +31,14 @@ public class Users extends DataEntity<Users> {
 
 	public void setHeadImg(String headImg) {
 		this.headImg = headImg;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 	
 	

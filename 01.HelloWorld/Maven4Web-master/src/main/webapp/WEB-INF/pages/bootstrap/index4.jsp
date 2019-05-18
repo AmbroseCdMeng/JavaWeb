@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,15 +27,12 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/resources/css/bootstrap/bootstrap.css">
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/resources/css/fontAwesome4.7.0/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/css/fontAwesome4.7.0/font-awesome.css">
 <link href="${ctx}/resources/css/flat-ui/flat-ui.css" rel="stylesheet">
 
 <%@include file="/resources/common/jslib.jsp"%>
-<script type="text/javascript"
-	src="${ctx }/resources/js/bootstrap/bootstrap.js"></script>
+<script type="text/javascript" src="${ctx }/resources/js/bootstrap/bootstrap.js"></script>
 
 <script type="text/javascript" src="https://cdn.bootcss.com/headroom/0.9.4/headroom.js"></script>
 <script type="text/javascript" src="https://cdn.bootcss.com/headroom/0.9.4/jQuery.headroom.js"></script>
@@ -80,12 +76,9 @@
 	<hr>
 	<!-- 定宽 -->
 	<div class="list-group">
-		<a class="list-group-item" href="#"> <i class="fa fa-home fa-fw"></i>
-			&nbsp; 主页
-		</a> <a class="list-group-item" href="#"> <i class="fa fa-book fa-fw"></i>
-			&nbsp;帮助
-		</a> <a class="list-group-item" href="#"> <i class="fa fa-cog fa-fw"></i>
-			&nbsp;设置
+		<a class="list-group-item" href="#"> <i class="fa fa-home fa-fw"></i> &nbsp; 主页
+		</a> <a class="list-group-item" href="#"> <i class="fa fa-book fa-fw"></i> &nbsp;帮助
+		</a> <a class="list-group-item" href="#"> <i class="fa fa-cog fa-fw"></i> &nbsp;设置
 		</a>
 	</div>
 
@@ -104,35 +97,28 @@
 
 	<!-- 动画 -->
 	<div>
-		<i class="fa fa-spinner fa-2x fa-spin"></i> <i
-			class="fa fa-circle-o-notch fa-2x fa-spin"></i> <i
-			class="fa fa-refresh fa-2x fa-spin"></i> <i
-			class="fa fa-cog fa-2x fa-spin"></i> <i
-			class="fa fa-spinner fa-2x fa-pulse"></i>
+		<i class="fa fa-spinner fa-2x fa-spin"></i> <i class="fa fa-circle-o-notch fa-2x fa-spin"></i> <i
+			class="fa fa-refresh fa-2x fa-spin"></i> <i class="fa fa-cog fa-2x fa-spin"></i> <i class="fa fa-spinner fa-2x fa-pulse"></i>
 	</div>
 	<!-- 旋转与反转 -->
 	<div>
-		<i class="fa fa-shield"></i>正常 <br> <i
-			class="fa fa-shield fa-rotate-90"></i>旋转90度 <br> <i
-			class="fa fa-shield fa-rotate-180"></i>旋转180度 <br> <i
-			class="fa fa-shield fa-rotate-270"></i>旋转270度 <br> <i
-			class="fa fa-shield fa-flip-horizontal"></i>水平翻转 <br> <i
-			class="fa fa-shield fa-flip-vertical"></i>垂直翻转 <br>
+		<i class="fa fa-shield"></i>正常 <br> <i class="fa fa-shield fa-rotate-90"></i>旋转90度 <br> <i
+			class="fa fa-shield fa-rotate-180"></i>旋转180度 <br> <i class="fa fa-shield fa-rotate-270"></i>旋转270度 <br> <i
+			class="fa fa-shield fa-flip-horizontal"></i>水平翻转 <br> <i class="fa fa-shield fa-flip-vertical"></i>垂直翻转 <br>
 	</div>
 
 	<hr>
 
 	<!-- BootStrap 融合 -->
 	<div class="btn-group">
-		<a class="btn btn-default" href="#"><i class="fa fa-align-left"></i></a>
-		<a class="btn btn-default" href="#"><i class="fa fa-align-center"></i></a>
-		<a class="btn btn-default" href="#"><i class="fa fa-align-right"></i></a>
-		<a class="btn btn-default" href="#"><i class="fa fa-align-justify"></i></a>
+		<a class="btn btn-default" href="#"><i class="fa fa-align-left"></i></a> <a class="btn btn-default" href="#"><i
+			class="fa fa-align-center"></i></a> <a class="btn btn-default" href="#"><i class="fa fa-align-right"></i></a> <a
+			class="btn btn-default" href="#"><i class="fa fa-align-justify"></i></a>
 	</div>
 	<div class="input-group">
-		<span class="input-group-addon"> <i
-			class="fa fa-envelope-o fa-fw"></i>
-		</span> <input class="form-control" type="text" placeholder="邮箱">
+		<span class="input-group-addon"> <i class="fa fa-envelope-o fa-fw"></i>
+		</span>
+		<input class="form-control" type="text" placeholder="邮箱">
 	</div>
 
 	<hr>
@@ -163,8 +149,7 @@
 	</nav>
 
 	<!-- 响应式导航条	 -->
-	<button class="btn btn-primary" type="button" data-toggle="collapse"
-		data-target="#collapseExample">触发按钮</button>
+	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample">触发按钮</button>
 	<div id="collapseExample">折叠区域</div>
 	<!-- <div class="collapse" id="collapseExample">折叠区域</div> -->
 
@@ -174,21 +159,18 @@
 		<div class="panel panel-default">
 			<div class="panel-heading" id="headingOne">
 				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordion"
-						href="#collapseOne"> 每日一句 # 1</a>
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> 每日一句 # 1</a>
 				</h4>
 			</div>
 			<div class="panel-collapse collapse in" id="collapseOne">
-				<div class="panel-body">
-					如果你真的照顾号自己的心，那么你会惊讶的发现，有那么多的姑娘在你的门前排好长队</div>
+				<div class="panel-body">如果你真的照顾号自己的心，那么你会惊讶的发现，有那么多的姑娘在你的门前排好长队</div>
 			</div>
 		</div>
 
 		<div class="panel panel-default">
 			<div class="panel-heading" id="headingTwo">
 				<h4 class="panel-title">
-					<a class="collapsed" data-toggle="collapse"
-						data-parent="#accordion" href="#collapseTwo">每日一句 #2</a>
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">每日一句 #2</a>
 				</h4>
 			</div>
 			<div class="panel-collapse collapse" id="collapseTwo">
@@ -203,10 +185,8 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<!-- 			<button type="button" class="navbar-toggle collapsed" -->
-				<button type="button" class="" data-toggle="collapse"
-					data-target="#navbar-collapse-1">
-					<span class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
+				<button type="button" class="" data-toggle="collapse" data-target="#navbar-collapse-1">
+					<span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span
 						class="glyphicon glyphicon-star"></span>
 				</button>
 				<a class="navbar-brand" href="#">王老二</a>
@@ -235,23 +215,17 @@
 
 	<div class="demo-icons">
 		<div class="demo-content">
-			<span class="fui-info-circle"></span> <span class="fui-alert-circle"></span>
-			<span class="fui-question-circle"></span> <span
-				class="fui-check-circle"></span> <span class="fui-cross-circle"></span>
-			<span class="fui-android"></span> <span class="fui-apple"></span>
+			<span class="fui-info-circle"></span> <span class="fui-alert-circle"></span> <span class="fui-question-circle"></span> <span
+				class="fui-check-circle"></span> <span class="fui-cross-circle"></span> <span class="fui-android"></span> <span
+				class="fui-apple"></span>
 		</div>
 	</div>
 
 
 	<div class="col-xs-8">
-		<video class="video-js" preload="auto"
-			poster="${ctx}/resources/images/poster.jpg" data-setup="{}">
-			<source
-				src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.mp4"
-				type="video/mp4">
-			<source
-				src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm"
-				type="video/webm">
+		<video class="video-js" preload="auto" poster="${ctx}/resources/images/poster.jpg" data-setup="{}">
+			<source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.mp4" type="video/mp4">
+			<source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm" type="video/webm">
 
 		</video>
 

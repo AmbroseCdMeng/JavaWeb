@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,19 +8,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/resources/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/css/bootstrap/bootstrap.css">
 <%@include file="/resources/common/jslib.jsp"%>
-<script type="text/javascript"
-	src="${ctx }/resources/js/bootstrap/bootstrap.js"></script>
+<script type="text/javascript" src="${ctx }/resources/js/bootstrap/bootstrap.js"></script>
 
 </head>
 <body>
 	<div>
 		<h1>BootStrap 的栅格系统就是把总宽度平分为12份</h1>
 		<h3>BootStrap 的栅格系统的基本用法无非就是对12等分的列进行不同方式的组合</h3>
-		<h3>BootStrap 的栅格系统是响应式的，会随着整体页面宽度发生变化，也就是说，只有屏幕宽度大于 992px
-			时才会完全生效。否则就需要对CSS进行微调</h3>
+		<h3>BootStrap 的栅格系统是响应式的，会随着整体页面宽度发生变化，也就是说，只有屏幕宽度大于 992px 时才会完全生效。否则就需要对CSS进行微调</h3>
 	</div>
 	<hr>
 	<!-- 行（row）包含在 .container（特定宽度，两边留白）或 .container-fluid（100%宽度）中，方便合适的排列和内边距 -->

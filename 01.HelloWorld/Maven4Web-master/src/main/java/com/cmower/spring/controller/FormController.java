@@ -3,6 +3,7 @@ package com.cmower.spring.controller;
 import java.awt.image.BufferedImage;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -287,5 +290,57 @@ public class FormController extends BaseController {
 		return "Form/fileInput";
 	}
 	
+	/**
+	 * Summernote 富文本输入框的配置
+	 * @return
+	 */
+	@RequestMapping("summernote")
+	public String summernote() {
+		return "Form/summernote";
+	}
+	
+	/**
+	 * summernote 的示例
+	 * @return
+	 */
+	@RequestMapping("summernoteDemo")
+	public String summernoteDemo() {
+		return "Form/summernoteDemo";
+	}
+	
+	@RequestMapping("saveDetail")
+	@ResponseBody
+	public AjaxResponse saveDetail() {
+		logger.debug("保存 summernote 数据");
+		AjaxResponse response = AjaxResponseUtils.getFailureResponse();
+		String detail = getPara("detail");
+		if (StringUtils.isEmpty(detail)) {
+			response.setMessage("请填写详情");
+			response.setField("detail");
+			return response;
+		}
+		Users user = this.userService.selectOne("KuangKuangKuang");
+		Users update = new Users();
+		update.setId(user.getId());
+		update.setDetail(detail);
+		this.userService.update(update);
+		
+		response = AjaxResponseUtils.getSuccessResponse();
+		response.setMessage("保存成功");
+		return response;
+	}
+	
+	
+	@RequestMapping("sitemesh")
+	public String sitemesh(@RequestParam(required = false, defaultValue="sitemesh") String p, Model model) {
+		if ("summernoteDemo".equals(p)) {
+			Users param = new Users();
+			param.setUsername(getPara("username"));
+			List<Users> list = this.userService.selectList(param);
+			model.addAttribute("list", list);
+			model.addAttribute("param", param);
+		}
+		return "Form/" + p;
+	}
 }
 

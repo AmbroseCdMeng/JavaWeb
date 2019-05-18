@@ -35,6 +35,11 @@
 <script type="text/javascript" src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
 <script type="text/javascript" src="${ctx}/resources/js/layer/layer.js"></script>
 
+<!-- BootStrapValidator -->
+<link href="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.css" rel="stylesheet">
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/language/zh_CN.js"></script>
+
 <!-- 引入 BootStrap-fileinput 文件输入框 -->
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/css/fileinput/fileinput.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/css/fileinput/fileinput-rtl.css">
@@ -48,6 +53,11 @@
 
 <script type="text/javascript" src="${ctx}/resources/js/fileinput/fileinput.js"></script>
 <script type="text/javascript" src="${ctx}/resources/js/fileinput/zh.js"></script>
+
+<!-- Summernote 富文本编辑器 -->
+<link href="https://cdn.bootcss.com/summernote/0.8.10/summernote.css" rel="stylesheet">
+<script type="text/javascript" src="https://cdn.bootcss.com/summernote/0.8.10/summernote.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/summernote/0.8.10/lang/summernote-zh-CN.js"></script>
 
 </head>
 <body>
