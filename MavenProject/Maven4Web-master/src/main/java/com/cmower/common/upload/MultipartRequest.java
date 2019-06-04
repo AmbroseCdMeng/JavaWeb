@@ -40,7 +40,7 @@ public class MultipartRequest extends HttpServletRequestWrapper {
 		
 		//String saveDirectory = PathKit.getWebRootPath() + File.separator + Constants.DEFAULT_UPLOAD + File.separator;
 		//String saveDirectory = Variables.ctx + File.separator + Constants.DEFAULT_UPLOAD + File.separator;
-		String saveDirectory = "F:\\301.Java_web\\01.HelloWorld\\Maven4Web-master\\src\\main\\webapp" + File.separator + Constants.DEFAULT_UPLOAD + File.separator;
+		String saveDirectory = "F:\\301.Java_web\\MavenProject\\Maven4Web-master\\src\\main\\webapp" + File.separator + Constants.DEFAULT_UPLOAD + File.separator;
 		
 		File dir = new File(saveDirectory);
 		if (!dir.exists()) {
